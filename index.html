@@ -13,9 +13,8 @@
             font-weight: normal;
             font-style: normal;
         }
-
         .center {
-            width: 400px;
+            width: 350px;
             display: flex;
             flex-direction: column;
             margin: auto;
@@ -25,6 +24,8 @@
         .center input {
             margin: auto;
             width: 230px;
+            border: 1px solid darkblue;
+            border-radius: 5px;
         }
         #errorLabel {
             color: red;
@@ -36,10 +37,27 @@
             font-family: 'Caveat';
             font-size: 30px;
         }
+        @media screen and (max-width: 980px){
+            .center {
+                font-size: 3em;
+                width: 90%;
+                text-align: left;
+            }
+            .center input {
+                width: 90vw;
+                height: 70px;
+                font-size: 1.3em;
+            }
+            #content {
+                margin: 20px;
+                width: 90%;
+                font-size: 2.8em;
+            }
+        }
     </style>
     <body>
         <div class='center'>
-            <div>Если ты Мариаш, то что ты ела в прошлую пятницу, после настольных игр, идя по ночному городу? :)</div><br />
+            <div>Мариаш, тут инфа только для тебя. Поэтому ответь, что ты ела в прошлую пятницу, после настольных игр, идя по ночному городу? :)</div><br /><br />
             <input class='input' type='text'>
             <p id='errorLabel'>Не, неверно. <i>Сразу выйдя из офиса</i></p>
         </div>
@@ -49,15 +67,17 @@
     <script>
         let input = document.querySelector('.input');
         input.addEventListener('change', function(e) {
-            let v = e.target.value.toLowerCase();
-            let m = v.match(/блин/);
-            try {
-                if (m[0]) {
-                    document.querySelector('.center').style.display = 'none';
-                    document.querySelector('#content').style.display = 'block';
+            if(e.target.value) {
+                let v = e.target.value.toLowerCase();
+                let m = v.match(/блин/);
+                try {
+                    if (m[0]) {
+                        document.querySelector('.center').style.display = 'none';
+                        document.querySelector('#content').style.display = 'block';
+                    }
+                } catch (e) {
+                    document.querySelector('#errorLabel').style.display = 'block';
                 }
-            } catch (e) {
-                document.querySelector('#errorLabel').style.display = 'block';
             }
         })
     </script>
