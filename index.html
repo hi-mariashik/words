@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>hi</title>
+    </head>
+    <style>
+        @font-face {
+            font-family: 'Caveat';
+            src: url('Caveat-Regular.woff2') format('woff2'),
+                url('Caveat-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .center {
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+        .center input {
+            margin: auto;
+            width: 230px;
+        }
+        #errorLabel {
+            color: red;
+            display: none;
+        }
+        #content {
+            display: none;
+            width: 800px;
+            font-family: 'Caveat';
+            font-size: 30px;
+        }
+    </style>
+    <body>
+        <div class='center'>
+            <div>Если ты Мариаш, то что ты ела в прошлую пятницу, после настольных игр, идя по ночному городу? :)</div><br />
+            <input class='input' type='text'>
+            <p id='errorLabel'>Не, неверно. <i>Сразу выйдя из офиса</i></p>
+        </div>
+        <div id='content'>Привет, Мариашик. <br />Я надеюсь, ты читаешь это одна.<br />Вчера со мной приключилась одна история, которая, как бы это странно не звучало, в какой-то степени повторяла мое отношение к тебе. Я, конечно, уже извинялся за тот случай, но сейчас, испытав тоже самое на своей шкуре, мне стало по-настоящему совестно перед тобой. Я искренне желаю, чтобы мы были если не друзьями, то хотя бы не было неловкого напряжения. Данные слова могут показаться пустыми, но я говорю от чистого сердца.<br />Хочу, чтобы ты знала - ты потрясающий человек, одним своим видом вдохновляющий и заряжающий позитивом. Маленький лучик солнца в этой промозглой осени. И я абсолютно не желаю, чтобы с тобой приключилось что-то нехорошее, или некомфортное для тебя.<br />В баночке вяленая вишня, без косточек. Наслаждайся и будь счастлива :)
+        </div>
+    </body>
+    <script>
+        let input = document.querySelector('.input');
+        input.addEventListener('change', function(e) {
+            let v = e.target.value.toLowerCase();
+            let m = v.match(/блин/);
+            try {
+                if (m[0]) {
+                    document.querySelector('.center').style.display = 'none';
+                    document.querySelector('#content').style.display = 'block';
+                }
+            } catch (e) {
+                document.querySelector('#errorLabel').style.display = 'block';
+            }
+        })
+    </script>
+</html>
